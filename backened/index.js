@@ -8,7 +8,7 @@ let conn = await mongoose.connect("mongodb://localhost:27017/inotebook")
 
 
 const app = express()
-const port = 3000
+const port = 5000
 
 app.use(express.json());   // Middleware used to use req.body so that we can send request in json
 
