@@ -3,10 +3,14 @@ import { User} from '../models/User.js';
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { validationResult,body } from 'express-validator';
+import fetchuser from '../middleware/fetchuser.js';
+
+
 const router= express.Router();
 const JWT_SECRET="RahulisDan$"
 
-//Create a User using POST:"/api/auth/createuser".Doesn't require Authentication
+//ROUTE 1:Create a User using POST:"/api/auth/createuser".Doesn't require Authentication
+
 router.post('/createuser',[
     body('name','Enter valid Name').isLength({ min: 5 }),
     body('email',"Enter valid email").isEmail(),
@@ -54,9 +58,11 @@ router.post('/createuser',[
         res.status(500).send("Internal Server Error");
     }
     })
-    
 
-    //Authenticate a User using POST:"/api/auth/login".No login Required.
+
+    
+//ROUTE 2:Authenticate a User using POST:"/api/auth/login".No login Required.
+
 router.post('/login',[
     body('email',"Enter valid email").isEmail(),
     body('password','Password cannot be blank').exists(),
@@ -100,5 +106,19 @@ router.post('/login',[
     }
 })
 
+//ROUTE 3:Get LoggedIN User Details using POST:"/api/auth/getuser".login Required.
+
+
+router.post('/getuser',fetchuser,async(req,res)=>         //fetchuser is a middleware                 
+{
+    try {
+        const userId=req.user.id;
+        const user= await User.findById(userId).select("-password")  //Selecting every data of user except password.
+        res.send(user);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+})
 
 export default router;

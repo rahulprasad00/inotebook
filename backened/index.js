@@ -14,7 +14,7 @@ app.use(express.json());   // Middleware used to use req.body so that we can sen
 
 //Available Routes
 app.use('/api/auth',authRoutes)
-app.use('/api/auth',notesRoutes)
+app.use('/api/notes',notesRoutes)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

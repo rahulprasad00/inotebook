@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
+const { Schema } = mongoose;
 
 const NotesSchema = new mongoose.Schema({
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'user'                      // written in export statement of User.js
+    },
     title:{
         type:String,
         required:true,
