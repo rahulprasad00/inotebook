@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom'
 const Navbar = () => {
   let location = useLocation();
   useEffect(() => {                //Using UseLocation Hook from react router dom to check for the current route
-    console.log(location);          // and set the color of navbar links
+                                    // and set the color of navbar links
   }, [location]);
 
   return (
