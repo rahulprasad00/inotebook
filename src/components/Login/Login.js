@@ -3,7 +3,7 @@ import noteimage from '../../assets/notes.jpg'
 import { Link,useNavigate } from 'react-router-dom'
 
 
-const Login = () => {
+const Login = (props) => {
 
     const host = "http://localhost:5000/";
     const [credentials, setcredentials] = useState({ email: "", password: "" });
@@ -31,7 +31,7 @@ const Login = () => {
         }
         else
         {
-            alert("Invalid Credentials")
+            props.setalert({message:"Invalid Credentials",type:""});
         }
     }
     const onChange = (e) => {
@@ -50,12 +50,12 @@ const Login = () => {
                     <form className="flex flex-col pt-3 md:pt-8" onSubmit={handleSubmit}>
                         <div className="flex flex-col pt-4">
                             <div className="focus-within:border-b-gray-500 relative flex overflow-hidden border-b-2 transition">
-                                <input type="email" id="email" name='email' className="w-full flex-1 appearance-none border-gray-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none" value={credentials.email} placeholder="Email" onChange={onChange} />
+                                <input type="email" id="email" name='email' className="w-full flex-1 appearance-none border-gray-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none" value={credentials.email} placeholder="Email" onChange={onChange} required />
                             </div>
                         </div>
                         <div className="mb-12 flex flex-col pt-4">
                             <div className="focus-within:border-b-gray-500 relative flex overflow-hidden border-b-2 transition">
-                                <input type="password" id="password" name='password' className="w-full flex-1 appearance-none border-gray-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="Password" value={credentials.password} onChange={onChange} />
+                                <input type="password" id="password" name='password' className="w-full flex-1 appearance-none border-gray-300 bg-white px-4 py-2 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="Password" value={credentials.password} onChange={onChange} required minLength={5}/>
                             </div>
                         </div>
                         <button type="submit" className="w-full rounded-lg bg-gray-900 px-4 py-2 text-center text-base font-semibold text-white shadow-md ring-gray-500 ring-offset-2 transition focus:ring-2" >Log in</button>
@@ -63,7 +63,7 @@ const Login = () => {
                     <div className="py-12 text-center">
                         <p className="whitespace-nowrap text-gray-600">
                             Don't have an account?
-                            <Link to="signup" className="underline-offset-4 font-semibold text-gray-900 underline">Sign up for free.</Link>
+                            <Link to="/signup" className="underline-offset-4 font-semibold text-gray-900 underline">Sign up for free.</Link>
                         </p>
                     </div>
                 </div>

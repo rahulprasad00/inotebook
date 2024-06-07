@@ -18,10 +18,11 @@ router.post('/createuser',[
 ],async(req,res)=>                             //Using Express Validator to prevent error throws on invalid entries.
 {
    //If there are errors, return Bad request and the errors.
+   let success=false;            // This variable is accessed by the frontend to check if error 
     const errors = validationResult(req);
    if(!errors.isEmpty())
     {
-        return res.status(400).json({errors:errors.array()})
+        return res.status(400).json({success,errors:errors.array()})
     }
     // Check whether the user with the same email exists already
 
@@ -30,7 +31,7 @@ router.post('/createuser',[
     
     if(user)
     {
-        return res.status(400).json({error:"Sorry a user with this email already exists"})
+        return res.status(400).json({success,error:"Sorry a user with this email already exists"})
     }
     //npm i bcryptjs to store passwords as hashes and adding salt upon it to improve security
     const salt= await bcrypt.genSalt(10);//Await pauses the control and waits for the promise to resolve.Without await below code is executed simultaneously
@@ -50,8 +51,8 @@ router.post('/createuser',[
     //npm i jsonwebtoken
     //Creating JWT token to sign the user id with secret key
     const authtoken=jwt.sign(data,JWT_SECRET);
-
-    res.json({authtoken});
+    success=true                   //If control reaches till here it implies there is no error
+    res.json({success,authtoken});
     }catch(error)
     {
         console.log(error.message);
