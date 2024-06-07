@@ -6,7 +6,7 @@ const ViewNote = (props) => {
     return (
         //Passing useRef Reference to Toggle modal using updatenote function
         <>
-
+            
             
         </>
 

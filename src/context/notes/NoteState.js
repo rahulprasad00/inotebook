@@ -31,25 +31,26 @@ const NoteState = (props) => {
     //API Call
     const response = await fetch(`${host}api/notes/addnote`, {
       method: "POST",
-      headers: {
+      headers: {                                                   //This is equivalent to the header of postman
         "Content-Type": "application/json",
         "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1NjQ3ZTBhMDg1MjIwNTljZjQ1OTE5In0sImlhdCI6MTcxNjkzMDU3N30.70JYVd9EbHyon19PHd_17ondDnvVEGt4hRke_ozfFMI"
       },
-      body: JSON.stringify({ title, description, tag }),
+      body: JSON.stringify({ title, description, tag }),          //This is equivalent to the body of postman
     });
 
     console.log("Note added")
     const json = await response.json();  //Parsing the json
     console.log(json)
-    let note = {
-      "_id": "665b7rahulbb4b75d43adf3559evdfb",
-      "user": "665647e0a08522059cf45919",
-      "title": title,
-      "description": description,
-      "tag": tag,
-      "date": "2024-06-01T19:05:36.425Z",
-      "__v": 0
-    }
+    // let note = {
+    //   "_id": "665b7rahulbb4b75d43adf3559evdfb",
+    //   "user": "665647e0a08522059cf45919",
+    //   "title": title,
+    //   "description": description,
+    //   "tag": tag,
+    //   "date": "2024-06-01T19:05:36.425Z",
+    //   "__v": 0
+    // }
+    let note=json;
     console.log(note);
     setNotes(notes.concat(note));
   }
@@ -89,7 +90,7 @@ const NoteState = (props) => {
     console.log(json)
     //Logic to edit note
 
-    let newNotes=JSON.parse(JSON.stringify(notes))     // We created a copy of the notes as in React we cannot directly update the notes in place
+    let newNotes= await JSON.parse(JSON.stringify(notes))     // We created a copy of the notes as in React we cannot directly update the notes in place
 
     for (let index = 0; index < newNotes.length; index++) {
       if (newNotes[index]._id === id) {

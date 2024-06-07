@@ -51,7 +51,7 @@ const Notes = () => {
 
                                 <div className=" w-full">
                                     <label htmlFor="etitle" className="leading-7 text-sm text-gray-600"  >Title</label>
-                                    <input type="text" id="etitle" name="etitle" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" onChange={onChange} value={note.etitle} />
+                                    <input type="text" id="etitle" name="etitle" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" onChange={onChange} value={note.etitle} required />
                                 </div>
 
                                 <div className="relative">
@@ -60,13 +60,13 @@ const Notes = () => {
                                 </div>
                                 <div className="relative">
                                     <label htmlFor="edescription" className="leading-7 text-sm text-gray-600" >Description</label>
-                                    <textarea id="edescription" name="edescription" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-[30rem] text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" onChange={onChange} value={note.edescription}></textarea>
+                                    <textarea id="edescription" name="edescription" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-[30rem] text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" onChange={onChange} value={note.edescription} required></textarea>
                                 </div>
                             </div>
                         </div>
                         <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse mr-[2rem] ">
                             <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto ">
-                                <button type="button" onClick={handleClick}
+                                <button  type="button" onClick={handleClick}
                                     className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                                     Save Changes
                                 </button>
@@ -87,6 +87,7 @@ const Notes = () => {
 
             <section className="text-gray-600 body-font">
                 <div className='sm:text-3xl text-2xl font-medium title-font  text-gray-900 text-center'>Your Notes</div>
+                <div className='sm:text-xl text-xl text-center'>{notes.length===0 && 'No notes to display'}</div>
                 <div className="container px-5 py-10 mx-auto flex flex-wrap">
                     {notes.map((note) => {
                         return <Noteitem key={note._id} note={note} updateNote={updateNote} />;

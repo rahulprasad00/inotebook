@@ -8,6 +8,8 @@ import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import NoteState from "./context/notes/NoteState";
 import Alert from "./components/Alert/Alert";
+import Login from "./components/Login/Login";
+import SignUp from "./components/SignUp/SignUp";
 
 function App() {
 
@@ -20,6 +22,14 @@ function App() {
     {
       path: "/about",
       element: <><NoteState><Navbar/><About/></NoteState></>
+    },
+    {
+      path: "/signup",
+      element: <><SignUp/></>
+    },
+    {
+      path: "/login",
+      element: <><Login/></>
     },
   ])
   return (
