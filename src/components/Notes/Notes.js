@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { useContext, useRef } from 'react'
+import { useContext} from 'react'
 import noteContext from '../../context/notes/noteContext'
 import Noteitem from '../Noteitem/Noteitem';
 import AddNote from '../AddNote/AddNote';
-import ViewNote from '../ViewNote/ViewNote';
 
 const Notes = () => {
     const context = useContext(noteContext);
-    const { notes, getNotes } = context;
+    const { notes, getNotes ,editNote } = context;
     const [showing, setshowing] = useState('hidden');
-    const [note, setNote] = useState({ etitle: "", edescription: "", etag: "default" })
+    const [note, setNote] = useState({id:"", etitle: "", edescription: "", etag: "default" })
 
 
     const handleClick = (e) => {
-        console.log("Updating the note",note)
+        editNote(note.id,note.etitle,note.edescription,note.etag)
+        setshowing("hidden");
     }
     const onChange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value })
@@ -22,17 +22,16 @@ const Notes = () => {
         getNotes();             // UseEffect to fetch all notes Only once
     }, [])                     // No Parameter is passed => function run only once
 
-    const ref = useRef(null);
     const updateNote = (currentNote) => {
         setshowing('');  //current keyword is used with Useref
-        setNote({etitle:currentNote.title, edescription:currentNote.description, etag:currentNote.tag})
+        setNote({id:currentNote._id,etitle:currentNote.title, edescription:currentNote.description, etag:currentNote.tag})
     }
 
     return (
         <>
             <AddNote />
 
-            <div className={`fixed z-10 inset-0 overflow-y-auto ${showing}`}>
+            <div className={`fixed z-10 inset-0 overflow-y-auto ${showing} drop-shadow-lg`}>
                 <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
                     <div className="fixed inset-0 transition-opacity">
                         <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
@@ -73,7 +72,7 @@ const Notes = () => {
                                 </button>
                             </span>
                             <span className="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                                <button type="button"
+                                <button type="button" onClick={()=>{setshowing("hidden")}}
                                     className="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                                     Cancel
                                 </button>

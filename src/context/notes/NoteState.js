@@ -39,6 +39,8 @@ const NoteState = (props) => {
     });
 
     console.log("Note added")
+    const json = await response.json();  //Parsing the json
+    console.log(json)
     let note = {
       "_id": "665b7rahulbb4b75d43adf3559evdfb",
       "user": "665647e0a08522059cf45919",
@@ -48,6 +50,7 @@ const NoteState = (props) => {
       "date": "2024-06-01T19:05:36.425Z",
       "__v": 0
     }
+    console.log(note);
     setNotes(notes.concat(note));
   }
 
@@ -63,7 +66,7 @@ const NoteState = (props) => {
       },
     });
     const json = await response.json();  //Parsing the json
-    // console.log(json);
+    console.log(json);
 
     let newNotes = notes.filter((note) => { return note._id !== id })
     setNotes(newNotes);
@@ -79,21 +82,25 @@ const NoteState = (props) => {
         "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1NjQ3ZTBhMDg1MjIwNTljZjQ1OTE5In0sImlhdCI6MTcxNjkzMDU3N30.70JYVd9EbHyon19PHd_17ondDnvVEGt4hRke_ozfFMI"
 
       },
+      body: JSON.stringify({ title, description, tag }),
     });
 
-    const json = response.json();
-
+    const json = await response.json();
+    console.log(json)
     //Logic to edit note
 
-    for (let index = 0; index < notes.length; index++) {
-      const element = notes[index];
+    let newNotes=JSON.parse(JSON.stringify(notes))     // We created a copy of the notes as in React we cannot directly update the notes in place
 
-      if (element._id === id) {
-        element.title = title;
-        element.description = description;
-        element.tag = tag;
+    for (let index = 0; index < newNotes.length; index++) {
+      if (newNotes[index]._id === id) {
+        newNotes[index].title = title;
+        newNotes[index].description = description;
+        newNotes[index].tag = tag;
+        break;
       }
     }
+
+    setNotes(newNotes);
   }
 
 
