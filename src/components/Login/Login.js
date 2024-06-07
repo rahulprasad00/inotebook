@@ -75,7 +75,7 @@ const Login = (props) => {
                     <p className="">Web Developer,India</p>
                     <p className="mb-7 text-sm opacity-70">IIT Kharagpur</p>
                 </div>
-                <img className="-z-1 absolute top-0 h-full w-full object-cover opacity-90" src={noteimage} />
+                <img className="-z-1 absolute top-0 h-full w-full object-cover opacity-90" src={noteimage} alt=''/>
             </div>
         </div>
 
