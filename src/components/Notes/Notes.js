@@ -3,6 +3,7 @@ import { useContext} from 'react'
 import noteContext from '../../context/notes/noteContext'
 import Noteitem from '../Noteitem/Noteitem';
 import AddNote from '../AddNote/AddNote';
+import { useNavigate } from 'react-router-dom';
 
 const Notes = () => {
     const context = useContext(noteContext);
@@ -10,6 +11,7 @@ const Notes = () => {
     const [showing, setshowing] = useState('hidden');
     const [note, setNote] = useState({id:"", etitle: "", edescription: "", etag: "default" })
 
+    let navigate=useNavigate();
 
     const handleClick = (e) => {
         editNote(note.id,note.etitle,note.edescription,note.etag)
@@ -19,8 +21,15 @@ const Notes = () => {
         setNote({ ...note, [e.target.name]: e.target.value })
     }
     useEffect(() => {
-        getNotes();             // UseEffect to fetch all notes Only once
-    }, [])                     // No Parameter is passed => function run only once
+        if(localStorage.getItem('token'))       
+        {
+            getNotes();                         // UseEffect to fetch all notes Only once
+        }  
+        else                                    //if the user does not have token we redirect it to login page so that he can get a token
+        {
+            navigate('/login')
+        }                         
+    }, [])// No Parameter is passed => useEffect function run only once
 
     const updateNote = (currentNote) => {
         setshowing('');  //current keyword is used with Useref

@@ -12,7 +12,7 @@ const JWT_SECRET="RahulisDan$"
 //ROUTE 1:Create a User using POST:"/api/auth/createuser".Doesn't require Authentication
 
 router.post('/createuser',[
-    body('name','Enter valid Name').isLength({ min: 5 }),
+    body('name','Enter valid Name').isLength({ min: 1 }),
     body('email',"Enter valid email").isEmail(),
     body('password','Enter at least 5 characters').isLength({ min: 5 })//Install express validator
 ],async(req,res)=>                             //Using Express Validator to prevent error throws on invalid entries.

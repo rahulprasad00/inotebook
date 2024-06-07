@@ -1,5 +1,5 @@
 import { React, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 
 const Navbar = () => {
@@ -7,6 +7,13 @@ const Navbar = () => {
   useEffect(() => {                //Using UseLocation Hook from react router dom to check for the current route
     // and set the color of navbar links
   }, [location]);
+
+  let navigate=useNavigate();
+  const handleLogout = (params) => {
+    localStorage.removeItem('token');
+    navigate('/login')
+  }
+  
 
   return (
     <header className="text-gray-400 bg-gray-900 body-font">
@@ -24,12 +31,12 @@ const Navbar = () => {
           <Link className="mr-5 hover:text-white" to="/">Fourth Link</Link>
         </nav>
         <div className='sm:flex-row'>
-          <div className="inline-flex items-center border-[1px] border-white text-white py-1 px-3 focus:outline-none hover:bg-gray-200 hover:text-black rounded text-base mt-4 md:mt-0 mx-2" >
+          {!localStorage.getItem('token')?<div className="inline-flex items-center border-[1px] border-white text-white py-1 px-3 focus:outline-none hover:bg-gray-200 hover:text-black rounded text-base mt-4 md:mt-0 mx-2" >
             <Link to='login'>Login</Link>
-          </div>
-          <div className="inline-flex items-center border-[1px] border-white text-white py-1 px-3 focus:outline-none hover:bg-gray-200 hover:text-black rounded text-base mt-4 md:mt-0 mx-2" >
-            <Link to='signup'>Sign Up</Link>
-          </div>
+          </div>:
+          <button className="inline-flex items-center border-[1px] border-white text-white py-1 px-3 focus:outline-none hover:bg-gray-200 hover:text-black rounded text-base mt-4 md:mt-0 mx-2" onClick={handleLogout}>
+            Logout
+          </button>}
         </div>
 
       </div>
