@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import authRoutes from './routes/auth.js';
 import notesRoutes from './routes/notes.js';
 import cors from 'cors';
-let conn = await mongoose.connect("mongodb://localhost:27017/inotebook")
+let conn = await mongoose.connect("mongodb+srv://rahulrnc03:mongoosedb@inotebook.vx7mo.mongodb.net/inotebook")
 
 
 

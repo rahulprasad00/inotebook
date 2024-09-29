@@ -27,8 +27,8 @@ const Navbar = () => {
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
           <Link className={`mr-5 hover:text-white ${location.pathname === "/" ? "text-white" : ""}`} to="/">Home</Link>
           <Link className={`mr-5 hover:text-white ${location.pathname === "/about" ? "text-white" : ""}`} to="/about">About</Link>
-          <Link className="mr-5 hover:text-white" to="/">Third Link</Link>
-          <Link className="mr-5 hover:text-white" to="/">Fourth Link</Link>
+          {/* <Link className="mr-5 hover:text-white" to="/">Third Link</Link>
+          <Link className="mr-5 hover:text-white" to="/">Fourth Link</Link> */}
         </nav>
         <div className='sm:flex-row'>
           {!localStorage.getItem('token')?<div className="inline-flex items-center border-[1px] border-white text-white py-1 px-3 focus:outline-none hover:bg-gray-200 hover:text-black rounded text-base mt-4 md:mt-0 mx-2" >
