@@ -1,14 +1,17 @@
+import 'dotenv/config';  
 import express from 'express';
 import mongoose from 'mongoose';
 import authRoutes from './routes/auth.js';
 import notesRoutes from './routes/notes.js';
 import cors from 'cors';
-let conn = await mongoose.connect("mongodb+srv://rahulrnc03:mongoosedb@inotebook.vx7mo.mongodb.net/inotebook")
+
+const connurl = process.env.MONGO_URI;
+let conn = await mongoose.connect(connurl)
 
 
 
 const app = express()
-const port = 5000
+const port = process.env.PORT || 3000;
 
 app.use(cors())            // npm i cors in backend folder to prevent CORS Policy error during API Calls
 app.use(express.json());   // Middleware used to use req.body so that we can send request in json
