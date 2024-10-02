@@ -5,7 +5,7 @@ import { Link,useNavigate } from 'react-router-dom'
 
 const Login = (props) => {
 
-    const host = "http://localhost:5000/";
+    const host = "https://inotebook-new.vercel.app/";
     const [credentials, setcredentials] = useState({ email: "", password: "" });
     const [isGuest, setisGuest] = useState(false)
 

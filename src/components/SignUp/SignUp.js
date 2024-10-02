@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'          //Usenavigate is u
 import notesimage2 from '../../assets/notesimage2.jpg'
 const SignUp = (props) => {
     let navigate = useNavigate();
-    const host = "http://localhost:5000/";
+    const host = "https://inotebook-new.vercel.app/";
     const [credentials, setcredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
 
     const handleSubmit = async (e) => {
