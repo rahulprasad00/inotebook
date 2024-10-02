@@ -15,7 +15,7 @@ const app = express()
 const port = process.env.PORT || 5000;
 
 app.use(cors({
-    origin: "https://inotebook-frontend-zeta.vercel.app",  // Your frontend domain
+    origin: "https://inotebook-frontend-zeta.vercel.app/",  // Your frontend domain
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true
 }));
