@@ -1,6 +1,6 @@
 import 'dotenv/config';  
 import express from 'express';
-import mongoose from 'mongoose';
+import mongoose from 'mongoose';"@babel/plugin-proposal-private-property-in-object"
 import authRoutes from './routes/auth.js';
 import notesRoutes from './routes/notes.js';
 import cors from 'cors';

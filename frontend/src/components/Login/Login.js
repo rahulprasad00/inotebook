@@ -8,7 +8,6 @@ const Login = (props) => {
     const host = hosturl;
 
     const [credentials, setcredentials] = useState({ email: "", password: "" });
-    const [isGuest, setisGuest] = useState(false)
 
     let navigate=useNavigate();
     const handleSubmit = async (e) => {
