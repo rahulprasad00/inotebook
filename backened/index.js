@@ -1,13 +1,13 @@
 import 'dotenv/config';  
 import express from 'express';
-import mongoose from 'mongoose';"@babel/plugin-proposal-private-property-in-object"
+import mongoose from 'mongoose';
 import authRoutes from './routes/auth.js';
 import notesRoutes from './routes/notes.js';
 import cors from 'cors';
 
 // const connurl = process.env.MONGO_URI;
 // console.log(connurl)
-let conn = await mongoose.connect("mongodb+srv://rahulrnc03:mongoosedb@inotebook.vx7mo.mongodb.net/inotebook")
+let conn = await mongoose.connect(process.env.MONGO_URI)
 
 
 

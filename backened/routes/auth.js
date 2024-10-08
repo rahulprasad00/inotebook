@@ -4,10 +4,12 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { validationResult,body } from 'express-validator';
 import fetchuser from '../middleware/fetchuser.js';
+import 'dotenv/config';  
+
 
 
 const router= express.Router();
-const JWT_SECRET="RahulisDan$"
+const JWT_SECRET=process.env.SECRET;
 
 //ROUTE 1:Create a User using POST:"/api/auth/createuser".Doesn't require Authentication
 
